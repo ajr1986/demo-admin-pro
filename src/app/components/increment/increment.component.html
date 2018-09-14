@@ -1,0 +1,15 @@
+<h3>{{ label }}</h3>
+
+<div class="input-group mb-3">
+  <div class="input-group-btn">
+    <button class="btn btn-primary" type="button" (click)="changeValue(-5)">
+      <i class="mdi mdi-minus"></i>
+    </button>
+  </div>
+  <input #percentageInput type="number" class="form-control" name="percentage" [(ngModel)]="percentage" min="0" max="100" (ngModelChange)="changeValueInput($event)">
+  <div class="input-group-btn">
+    <button class="btn btn-primary" type="button" (click)="changeValue(5)">
+      <i class="mdi mdi-plus"></i>
+    </button>
+  </div>
+</div>
