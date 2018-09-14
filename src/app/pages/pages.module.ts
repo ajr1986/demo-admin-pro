@@ -11,6 +11,7 @@ import { SharedModule } from '../shared/shared.module';
 import { PagesRoutingModule } from './pages.routes';
 import { IncrementComponent } from '../components/increment/increment.component';
 import { DoughnutChartComponent } from '../components/doughnut-chart/doughnut-chart.component';
+import { AccountSettingsComponent } from './account-settings/account-settings.component';
 
 @NgModule({
     declarations: [
@@ -19,7 +20,8 @@ import { DoughnutChartComponent } from '../components/doughnut-chart/doughnut-ch
         ChartsComponent,
         PagesComponent,
         IncrementComponent,
-        DoughnutChartComponent
+        DoughnutChartComponent,
+        AccountSettingsComponent
     ],
     exports: [
         DashboardComponent,
