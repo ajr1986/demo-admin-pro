@@ -1,5 +1,7 @@
 # AdminPro (client)
 
+It is a client for https://github.com/ajr1986/demo-admin-pro-backend/tree/master
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.0.
 
 ## Development server
