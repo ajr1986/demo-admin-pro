@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { URL_SERVICES } from '../../config/config';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { UploadService } from '../upload/upload.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class UserService {
   user: User;
   token: string;
 
-  constructor(public httpClient: HttpClient, public router: Router) { 
+  constructor(public httpClient: HttpClient, public router: Router, public uploadService: UploadService) { 
     this.loadLocalStorage();
   }
 
@@ -88,5 +89,35 @@ export class UserService {
     let url = URL_SERVICES + '/user';
 
     return this.httpClient.post(url, user);
+  }
+
+  updateUser(user: User){
+
+    let url = `${URL_SERVICES}/user/${user._id}?token=${this.token}`;
+
+    return this.httpClient.put(url, user).pipe(map((resp: any) => {
+
+      this.saveLocalStorage(resp.user._id, this.token, resp.user);
+      swal('User updated', this.user.name, 'success');
+
+      return true;
+    }));
+  }
+
+  changeImage(file: File, id: string){
+
+    this.uploadService.uploadFile(file, 'users', id)
+      .then( (resp: any) => {
+
+        console.log(resp);
+        this.user.img = resp.users.img;
+        this.saveLocalStorage(id, this.token, this.user);
+        swal('Image updated', this.user.name, 'success');
+
+      })
+      .catch( resp => {
+
+        console.log(resp);
+      });
   }
 }
