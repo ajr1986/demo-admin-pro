@@ -17,6 +17,8 @@ import { RxjsComponent } from './rxjs/rxjs.component';
 import { PipesModule } from '../pipes/pipes.module';
 import { ProfileComponent } from './profile/profile.component';
 import { CommonModule } from '@angular/common';
+import { UsersComponent } from './users/users.component';
+import { ModalComponent } from '../components/modal/modal.component';
 
 @NgModule({
     declarations: [
@@ -29,7 +31,9 @@ import { CommonModule } from '@angular/common';
         AccountSettingsComponent,
         PromisesComponent,
         RxjsComponent,
-        ProfileComponent
+        ProfileComponent,
+        UsersComponent,
+        ModalComponent
     ],
     exports: [
         DashboardComponent,

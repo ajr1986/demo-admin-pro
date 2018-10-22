@@ -1,0 +1,26 @@
+<div class="modal-background animated fadeIn" *ngIf="modalService.show">
+  <div class="modal" style="display:block" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Modal title</h5>
+          <button (click)="closeModal()" type="button" class="close" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+
+            <img *ngIf="!imagePreviewTemp" [src]="modalService.img | image" class="w150">
+            <img *ngIf="imagePreviewTemp" [src]="imagePreviewTemp" class="w150">
+
+            <input (change)="selectImage($event.target.files[0])" type="file" name="" id="">
+
+        </div>
+        <div class="modal-footer">
+          <button (click)="closeModal()" type="button" class="btn btn-secondary">Close</button>
+          <button (click)="changeImage()" [disabled]="!imagePreviewTemp" type="button" class="btn btn-primary">Update</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

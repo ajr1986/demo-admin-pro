@@ -97,8 +97,11 @@ export class UserService {
 
     return this.httpClient.put(url, user).pipe(map((resp: any) => {
 
-      this.saveLocalStorage(resp.user._id, this.token, resp.user);
-      swal('User updated', this.user.name, 'success');
+      if(this.user._id == resp.user._id){
+        this.saveLocalStorage(resp.user._id, this.token, resp.user);
+      }
+
+      swal('User updated', resp.user.name, 'success');
 
       return true;
     }));
@@ -109,7 +112,6 @@ export class UserService {
     this.uploadService.uploadFile(file, 'users', id)
       .then( (resp: any) => {
 
-        console.log(resp);
         this.user.img = resp.users.img;
         this.saveLocalStorage(id, this.token, this.user);
         swal('Image updated', this.user.name, 'success');
@@ -119,5 +121,30 @@ export class UserService {
 
         console.log(resp);
       });
+  }
+
+  loadUsers(from: number = 0){
+
+    let url = `${URL_SERVICES}/user?p=${from}`;
+
+    return this.httpClient.get(url);
+  }
+
+  searchUsers(exp: string){
+
+    let url = `${URL_SERVICES}/search/users/${exp}`;
+
+    return this.httpClient.get(url);
+  }
+
+  deleteUser(user: User){
+
+    let url = `${URL_SERVICES}/user/${user._id}?token=${this.token}`;
+    
+    return this.httpClient.delete(url).pipe(map(resp => {
+
+      swal('User deleted', user.name, 'success');
+      return true;
+    }));
   }
 }
