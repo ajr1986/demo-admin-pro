@@ -47,6 +47,10 @@ export class UsersComponent implements OnInit {
       return;
     }
 
+    if((this.from + offset)*5 >= this.totalUsers){
+      return;
+    }
+
     this.from += offset;
     this.loadUsers();
   }
@@ -62,7 +66,6 @@ export class UsersComponent implements OnInit {
 
     this.userService.searchUsers(exp).subscribe((resp: any) => {
       
-      this.totalUsers = resp.total;
       this.users = resp.users;
 
       this.loading = false;

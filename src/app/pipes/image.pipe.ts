@@ -19,11 +19,11 @@ export class ImagePipe implements PipeTransform {
       return img;
     }
 
-    if(type == 'user'){
+    if(type == 'user' || type == 'users'){
       return `${url}/users/${img}`;
-    } else if (type == 'hospital'){
+    } else if (type == 'hospital' || type == 'hospitals'){
       return `${url}/hospitals/${img}`;
-    } else if (type == 'doctor'){
+    } else if (type == 'doctor' || type == 'doctors'){
       return `${url}/doctors/${img}`;
     } else {
       return `${url}/users/default`;

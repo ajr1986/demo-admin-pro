@@ -16,7 +16,6 @@ export class BreadcrumbsComponent implements OnInit {
 
     this.getRouteData().subscribe(data => {
 
-      console.log(data);
       this.title = data;
       appTitle.setTitle(`AdminPro - ${this.title}`);
     })

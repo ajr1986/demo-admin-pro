@@ -1,0 +1,84 @@
+<div class="row animated fadeIn">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+
+        <input #input type="text" class="form-control" placeholder="Search doctor..." (keyup)="searchDoctors(input.value)">
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row animated fadeIn" *ngIf="loading">
+  <div class="col-sm-12">
+    <div class="alert alert-warning text-center">
+
+      <strong>Loading</strong>
+      <br>
+      <i class="fa fa-refresh fa-spin fa-2x"></i>
+      <br>
+      <span>Waiting please</span>
+
+    </div>
+  </div>
+</div>
+
+<div class="row animated fadeIn" *ngIf="!loading">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+
+        <h3 class="card-title">Register doctors ( <small>{{ totalDoctors }}</small> )</h3>
+
+        <div class="text-right">
+          <button [routerLink]="['/doctor','new']" class="btn btn-rounded btn-primary">
+            <i class="fa fa-plus"></i>
+            New Doctor
+          </button>
+        </div>
+
+        <table class="table table-hover">
+
+          <thead>
+            <tr>
+              <th>Image</th>
+              <th>Doctor</th>
+              <th>Hospital</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let doctor of doctors">
+              <td>
+                <img (click)="showModal(doctor._id, doctor.img)" [src]="doctor.img | image:'doctor'" class="w50 img-circle pointer">
+              </td>
+              <td> 
+                <input [(ngModel)]="doctor.name" name="name" type="text" class="form-control">
+              </td>
+              <td>
+                {{ doctor.hospital.name }}
+              </td>
+              <td>
+
+                <button [routerLink]="['/doctor', doctor._id]" class="btn btn-primary">
+                  <i class="fa fa-save"></i>
+                </button>
+
+                <button (click)="deleteDoctor(doctor)" class="btn btn-danger">
+                  <i class="fa fa-trash-o"></i>
+                </button>
+
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <button (click)="changePage(-1)" class="btn btn-secondary">Previous</button>
+
+        <button (click)="changePage(1)" class="btn btn-secondary">Next</button>
+
+      </div>
+    </div>
+  </div>
+</div>
