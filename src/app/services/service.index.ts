@@ -1,3 +1,5 @@
+export { AdminGuard } from "./guards/admin.guard";
+export { SearchService } from "./search/search.service";
 export { DoctorService } from "./doctor/doctor.service";
 export { HospitalService } from "./hospital/hospital.service";
 export { ModalService } from "./modal/modal.service";

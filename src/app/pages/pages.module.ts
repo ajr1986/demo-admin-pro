@@ -22,6 +22,7 @@ import { ModalComponent } from '../components/modal/modal.component';
 import { HospitalsComponent } from './hospitals/hospitals.component';
 import { DoctorsComponent } from './doctors/doctors.component';
 import { DoctorComponent } from './doctors/doctor.component';
+import { SearchComponent } from './search/search.component';
 
 @NgModule({
     declarations: [
@@ -39,7 +40,8 @@ import { DoctorComponent } from './doctors/doctor.component';
         ModalComponent,
         HospitalsComponent,
         DoctorsComponent,
-        DoctorComponent
+        DoctorComponent,
+        SearchComponent
     ],
     exports: [
         DashboardComponent,

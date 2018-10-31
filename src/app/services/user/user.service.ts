@@ -13,6 +13,7 @@ export class UserService {
 
   user: User;
   token: string;
+  menu: any = null;
 
   constructor(public httpClient: HttpClient, public router: Router, public uploadService: UploadService) { 
     this.loadLocalStorage();
@@ -33,7 +34,7 @@ export class UserService {
 
     return this.httpClient.post(url, user).pipe(map((resp: any) => {
 
-      this.saveLocalStorage(resp.id, resp.token, resp.user);
+      this.saveLocalStorage(resp.id, resp.token, resp.user, resp.menu);
       return true;
     }));
   }
@@ -44,7 +45,7 @@ export class UserService {
 
     return this.httpClient.post(url, {token: token}).pipe(map((resp: any) => {
 
-      this.saveLocalStorage(resp.id, resp.token, resp.user);
+      this.saveLocalStorage(resp.id, resp.token, resp.user, resp.menu);
       return true;
     }));
   }
@@ -58,22 +59,26 @@ export class UserService {
 
     this.user = null;
     this.token = null;
+    this.menu = null;
 
     localStorage.removeItem('id');
     localStorage.removeItem('user');
     localStorage.removeItem('token');
+    localStorage.removeItem('menu');
 
     this.router.navigate(['/login']);
   }
 
-  saveLocalStorage(id: string, token: string, user: User){
+  saveLocalStorage(id: string, token: string, user: User, menu: any){
 
     localStorage.setItem('id', id);
     localStorage.setItem('token', token);
     localStorage.setItem('user', JSON.stringify(user));
+    localStorage.setItem('menu', JSON.stringify(menu));
 
     this.user = user;
     this.token = token;
+    this.menu = menu;
   }
 
   loadLocalStorage(){
@@ -81,6 +86,11 @@ export class UserService {
     if(localStorage.getItem('token')){
       this.token = localStorage.getItem('token');
       this.user = JSON.parse(localStorage.getItem('user'));
+      this.menu = JSON.parse(localStorage.getItem('menu'));
+    } else {
+      this.token = null;
+      this.user = null;
+      this.menu = null;
     }
   }
 
@@ -98,7 +108,7 @@ export class UserService {
     return this.httpClient.put(url, user).pipe(map((resp: any) => {
 
       if(this.user._id == resp.user._id){
-        this.saveLocalStorage(resp.user._id, this.token, resp.user);
+        this.saveLocalStorage(resp.user._id, this.token, resp.user, this.menu);
       }
 
       swal('User updated', resp.user.name, 'success');
@@ -113,7 +123,7 @@ export class UserService {
       .then( (resp: any) => {
 
         this.user.img = resp.users.img;
-        this.saveLocalStorage(id, this.token, this.user);
+        this.saveLocalStorage(id, this.token, this.user, this.menu);
         swal('Image updated', this.user.name, 'success');
 
       })

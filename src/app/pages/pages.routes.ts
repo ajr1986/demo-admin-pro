@@ -8,12 +8,13 @@ import { ChartsComponent } from './charts/charts.component';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
 import { PromisesComponent } from './promises/promises.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
-import { LoginGuardGuard } from '../services/service.index';
+import { LoginGuardGuard, AdminGuard } from '../services/service.index';
 import { ProfileComponent } from './profile/profile.component';
 import { UsersComponent } from './users/users.component';
 import { HospitalsComponent } from './hospitals/hospitals.component';
 import { DoctorsComponent } from './doctors/doctors.component';
 import { DoctorComponent } from './doctors/doctor.component';
+import { SearchComponent } from './search/search.component';
 
 const pagesRoutes: Routes = [
     {
@@ -25,8 +26,9 @@ const pagesRoutes: Routes = [
             { path: 'promises', component: PromisesComponent, data: {title: 'Promises'} },
             { path: 'rxjs', component: RxjsComponent, data: {title: 'Rxjs'} },
             { path: 'profile', component: ProfileComponent, data: {title: 'Profile'} },
+            { path: 'search/:exp', component: SearchComponent, data: {title: 'Search'} },
             // Admin
-            { path: 'users', component: UsersComponent, data: {title: 'Admin Users'} },
+            { path: 'users', component: UsersComponent, canActivate: [AdminGuard], data: {title: 'Admin Users'} },
             { path: 'hospitals', component: HospitalsComponent, data: {title: 'Admin Hospitals'} },
             { path: 'doctors', component: DoctorsComponent, data: {title: 'Admin Doctors'} },
             { path: 'doctor/:id', component: DoctorComponent, data: {title: 'Update Doctor'} },

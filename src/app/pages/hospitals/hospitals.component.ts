@@ -123,5 +123,4 @@ export class HospitalsComponent implements OnInit {
       }
     });
   }
-  }
 }

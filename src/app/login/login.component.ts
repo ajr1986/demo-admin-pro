@@ -51,21 +51,16 @@ export class LoginComponent implements OnInit {
 
     this.auth2.attachClickHandler(element, {}, (googleUser) => {
 
-      // let profile = googleUser.getBasicProfile();
       let token = googleUser.getAuthResponse().id_token;
       
       this.userService.loginGoogle(token).subscribe(resp => {
 
-        // this.router.navigate(['/']);
         window.location.href = '#/';
       });
     });
   }
 
   login(form: NgForm){
-
-    console.log(form.valid);
-    console.log(form.value);
 
     if(!form.valid){
       return;
@@ -76,6 +71,10 @@ export class LoginComponent implements OnInit {
     this.userService.login(user, this.remember).subscribe(resp => {
 
       this.router.navigate(['/']);
+    },
+    err => {
+      console.log(err);
+      swal('Login error', err.error.message, 'error');
     });
 
   }
