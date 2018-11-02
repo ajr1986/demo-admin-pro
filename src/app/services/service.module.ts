@@ -9,7 +9,8 @@ import {
   UploadService,
   HospitalService,
   DoctorService,
-  AdminGuard
+  AdminGuard,
+  ValidateTokenGuard
 } from "./service.index";
 import { HttpClientModule } from "@angular/common/http";
 
@@ -25,7 +26,8 @@ import { HttpClientModule } from "@angular/common/http";
     UploadService,
     HospitalService,
     DoctorService,
-    AdminGuard
+    AdminGuard,
+    ValidateTokenGuard
   ]
 })
 export class ServiceModule {}

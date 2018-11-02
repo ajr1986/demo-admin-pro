@@ -12,7 +12,7 @@ import { UploadService } from '../upload/upload.service';
 export class UserService {
 
   user: User;
-  token: string;
+  token: string = null;
   menu: any = null;
 
   constructor(public httpClient: HttpClient, public router: Router, public uploadService: UploadService) { 
@@ -154,6 +154,17 @@ export class UserService {
     return this.httpClient.delete(url).pipe(map(resp => {
 
       swal('User deleted', user.name, 'success');
+      return true;
+    }));
+  }
+
+  renewToken(){
+
+    let url = `${URL_SERVICES}/login/renew?token=${this.token}`;
+
+    return this.httpClient.get(url).pipe(map((resp: any) => {
+
+      localStorage.setItem('token', resp.token);
       return true;
     }));
   }

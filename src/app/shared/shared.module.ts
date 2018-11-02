@@ -7,6 +7,7 @@ import { HeaderComponent } from './header/header.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
 import { PipesModule } from '../pipes/pipes.module';
+import { ModalComponent } from '../components/modal/modal.component';
 
 @NgModule({
     imports: [
@@ -18,13 +19,15 @@ import { PipesModule } from '../pipes/pipes.module';
         PagenotfoundComponent,
         HeaderComponent,
         SidebarComponent,
-        BreadcrumbsComponent
+        BreadcrumbsComponent,
+        ModalComponent
     ],
     exports: [
         PagenotfoundComponent,
         HeaderComponent,
         SidebarComponent,
         BreadcrumbsComponent,
+        ModalComponent
     ]
 })
 export class SharedModule {}

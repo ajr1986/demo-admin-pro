@@ -1,3 +1,4 @@
+export { ValidateTokenGuard } from "./guards/validate-token.guard";
 export { AdminGuard } from "./guards/admin.guard";
 export { SearchService } from "./search/search.service";
 export { DoctorService } from "./doctor/doctor.service";

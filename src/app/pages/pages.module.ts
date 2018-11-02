@@ -6,7 +6,6 @@ import { ChartsModule } from 'ng2-charts';
 import { ChartsComponent } from './charts/charts.component';
 import { ProgressComponent } from './progress/progress.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { PagesComponent } from './pages.component';
 import { SharedModule } from '../shared/shared.module';
 import { PagesRoutingModule } from './pages.routes';
 import { IncrementComponent } from '../components/increment/increment.component';
@@ -18,7 +17,6 @@ import { PipesModule } from '../pipes/pipes.module';
 import { ProfileComponent } from './profile/profile.component';
 import { CommonModule } from '@angular/common';
 import { UsersComponent } from './users/users.component';
-import { ModalComponent } from '../components/modal/modal.component';
 import { HospitalsComponent } from './hospitals/hospitals.component';
 import { DoctorsComponent } from './doctors/doctors.component';
 import { DoctorComponent } from './doctors/doctor.component';
@@ -29,7 +27,6 @@ import { SearchComponent } from './search/search.component';
         DashboardComponent,
         ProgressComponent,
         ChartsComponent,
-        PagesComponent,
         IncrementComponent,
         DoughnutChartComponent,
         AccountSettingsComponent,
@@ -37,7 +34,6 @@ import { SearchComponent } from './search/search.component';
         RxjsComponent,
         ProfileComponent,
         UsersComponent,
-        ModalComponent,
         HospitalsComponent,
         DoctorsComponent,
         DoctorComponent,
@@ -47,7 +43,6 @@ import { SearchComponent } from './search/search.component';
         DashboardComponent,
         ProgressComponent,
         ChartsComponent,
-        PagesComponent,
         IncrementComponent
     ],
     imports: [
